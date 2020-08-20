@@ -33,7 +33,8 @@ function QuestionBox(props) {
                     key={index} 
                     className="question-box__btn answer-btn"
                     onClick={() => setAnswers([answer])}
-                >{ answer }
+                    dangerouslySetInnerHTML={{ __html: answer }}
+                >
                 </button>
             )}
 
