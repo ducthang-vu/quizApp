@@ -1,0 +1,17 @@
+@import 'commons';
+
+.final-result {
+    text-align: center;
+
+    .score > span {
+        font-weight: bold;
+    }
+
+    button {
+        margin-top: 35px;
+        padding: 10px 25px;
+        background: $primaryColor;
+        color: $lightColor;
+        font-weight: bold;
+    }
+}

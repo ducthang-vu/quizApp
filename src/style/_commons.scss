@@ -1,0 +1,44 @@
+$primaryColor: #315937;
+$lightColor: #F2F0F2;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+
+
+@mixin mobile {
+    @media (min-width: 576px) {
+        @content;
+    }
+}
+/* Tablets (tablets, 768px and up) */
+@mixin tablet {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+/* Desktops (desktops, 992px and up) */
+@mixin desktop {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
+/* Large desktops (large desktops, 1200px and up) */
+@mixin large-desktop {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}

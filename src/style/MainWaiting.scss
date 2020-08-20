@@ -1,0 +1,24 @@
+@import 'commons.scss';
+
+.main-waiting {
+    text-align: center;
+
+    h2 {
+        padding: 18px;
+        animation: intermittentAnimation 5s infinite 100ms;
+    }
+
+    #canvas-wrapper {
+        padding-top: 30px;
+
+        #canvas {
+            background: $lightColor;
+        }
+    }
+}
+
+@keyframes intermittentAnimation {
+        0% {opacity: 1;}
+        50% {opacity: 0;}
+        100% {opacity: 1;}
+    }
