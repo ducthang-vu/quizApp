@@ -4,7 +4,7 @@ const _ = require("underscore");
 
 function QuestionBox(props) {
     const getAllAnswers = (props) => {
-        const { correct_answer, incorrect_answers } =  props.question
+        const { correct_answer, incorrect_answers } = props.question
         return _.shuffle(incorrect_answers.concat(correct_answer))
     }
 

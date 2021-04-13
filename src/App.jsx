@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import './style/App.scss'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import MainWaiting from './components/MainWaiting'
-import MainContent from './components/MainContent'
+import Spinner from './components/Spinner'
+import MainContent from './containers/MainContent'
 import axios from 'axios';
 
 function App() {
@@ -18,9 +18,7 @@ function App() {
     <div className="app flex">
         <Header></Header>
         <main>
-          {questions.length ? 
-            <MainContent questions={questions}></MainContent> : 
-            <MainWaiting></MainWaiting>}
+          { questions.length ? <MainContent questions={questions}></MainContent> : <Spinner></Spinner> }
         </main>
         <Footer></Footer>
     </div>

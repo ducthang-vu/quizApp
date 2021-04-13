@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import QuestionBox from './QuestionBox'
-import FinalResult from './FinalResult';
+import FinalResult from '../components/FinalResult';
 import '../style/MainContent.scss'
+import { MobileStepper } from '@material-ui/core';
 
 function MainContent(props) {
     const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -17,6 +18,15 @@ function MainContent(props) {
             <div className="container">
                 {currentQuestion < props.questions.length ?
                     <React.Fragment>
+                        <MobileStepper
+                            variant="progress"
+                            steps={10}
+                            position="static"
+                            activeStep={currentQuestion}
+                            className="stepper"
+                            backButton=""
+                            nextButton=""
+                        />
                         <h2>Question {counter()} </h2>
                         <QuestionBox 
                             question={props.questions[currentQuestion]}
@@ -24,9 +34,7 @@ function MainContent(props) {
                         >
                         </QuestionBox> 
                     </React.Fragment> :
-                    <FinalResult
-                        score={{score, total: props.questions.length}}
-                    ></FinalResult>
+                    <FinalResult score={{score, total: props.questions.length}} />
                 }
             </div>
         </div>

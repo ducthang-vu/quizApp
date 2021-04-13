@@ -5,11 +5,11 @@
         margin-bottom: 15px;
         padding: 25px;
         font-weight: normal;
-        background: #F2E41D;
+        background: $primaryColor;
         color: black;
         border-radius: 15px;
         box-shadow: 5px 5px 13px 0px rgba(0,0,0,0.5);
-        border: 2px outset rgb(118, 118, 118);
+        border: 2px outset $primaryColor;
     }
 
     &__btn {
