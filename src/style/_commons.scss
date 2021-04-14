@@ -1,3 +1,4 @@
+// https://colorhunt.co/palette/264850
 $primaryColor: #7f2838;
 $backgroundColor: #2b2e4a;
 
@@ -5,6 +6,15 @@ $backgroundColor: #2b2e4a;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+
+    &:hover {
+        opacity: 0.5;
+    }
 }
 
 .container {
