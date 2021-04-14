@@ -1,9 +1,16 @@
 import React from 'react';
-import '../style/FinalResult.scss'
-import {Button} from '@material-ui/core';
+import '../style/FinalResult.scss';
+import { Button } from '@material-ui/core';
 
-function FinalResult(props) {
-    const {score, total} = props.score
+interface FinalResultProps {
+    score: {
+        score: number,
+        total: number
+    }
+}
+
+function FinalResult(props: FinalResultProps) {
+    const { score, total } = props.score;
     return (
         <div className="final-result">
             <div className="container">
@@ -16,7 +23,7 @@ function FinalResult(props) {
                 </Button>
             </div>
         </div>
-    )
+    );
 }
 
-export default FinalResult
+export default FinalResult;

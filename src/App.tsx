@@ -16,11 +16,11 @@ function App() {
 
   return (
     <div className="app flex">
-        <Header></Header>
+        <Header/>
         <main>
-          { questions.length ? <MainContent questions={questions}></MainContent> : <Spinner></Spinner> }
+          { questions.length ? <MainContent questions={questions}/> : <Spinner/> }
         </main>
-        <Footer></Footer>
+        <Footer/>
     </div>
   );
 }
