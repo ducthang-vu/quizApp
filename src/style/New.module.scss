@@ -1,0 +1,27 @@
+@import 'commons';
+
+.form {
+  background: $primaryColor;
+  border-radius: 15px;
+  margin: 15px auto;
+  padding: 15px;
+  text-align: center;
+  width: 400px;
+  max-width: 90%;
+
+  & > * {
+    margin-bottom: 25px !important;
+  }
+
+  h2 {
+    color: white;
+    text-align: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    min-width: 140px;
+  }
+}

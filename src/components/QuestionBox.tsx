@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import '../style/QuestionBox.scss';
+import { Question } from '../core-data/question';
 const _ = require("underscore");
 
 
-interface QuestionBoxInterface {
-    question: {
-        question: string,
-        correct_answer: string,
-        incorrect_answers: string
-    };
+interface IQuestionBox {
+    question: Question;
     answerQuestion: (newScore: number) => void;
-    children: any[];
+    children?: any[];
 }
 
 
-function QuestionBox(props: QuestionBoxInterface) {
-    const getAllAnswers = (props: QuestionBoxInterface) => {
+export default function QuestionBox(props: IQuestionBox) {
+    const getAllAnswers = (props: IQuestionBox) => {
         const { correct_answer, incorrect_answers } = props.question;
         return _.shuffle(incorrect_answers.concat(correct_answer));
     };
@@ -66,5 +63,3 @@ function QuestionBox(props: QuestionBoxInterface) {
         </div>
     );
 }
-
-export default QuestionBox;
