@@ -1,6 +1,6 @@
-import { IGetQuestionsParams } from './i-get-questions-params';
+import { IGetQuestionsParams } from './questions/i-get-questions-params';
 import { Observable } from 'rxjs';
-import { Question } from './question';
+import { Question } from './questions/question';
 
 export interface IQuestionsService {
     getQuestions: (params: IGetQuestionsParams) => Observable<Question[]>

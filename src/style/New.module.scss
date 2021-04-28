@@ -4,7 +4,7 @@
   background: $primaryColor;
   border-radius: 15px;
   margin: 15px auto;
-  padding: 15px;
+  padding: 15px 10px;
   text-align: center;
   width: 400px;
   max-width: 90%;
@@ -19,9 +19,9 @@
   }
 
   .btn {
-    display: inline-flex;
+    display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin: 20px auto 0;
     min-width: 140px;
   }
 }

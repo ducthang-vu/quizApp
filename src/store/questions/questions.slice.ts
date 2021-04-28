@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Question } from '../../core-data/question';
-import { IGetQuestionsParams } from '../../core-data/i-get-questions-params';
+import { Question } from '../../core-data/questions/question';
+import { IGetQuestionsParams } from '../../core-data/questions/i-get-questions-params';
 
 interface QuestionsSlice {
     entities: Question[];

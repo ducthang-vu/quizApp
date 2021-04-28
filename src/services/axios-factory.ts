@@ -1,9 +1,10 @@
 import Axios from 'axios-observable';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { OpenTriviaTokenResponse } from '../core-data/open-trivia-token-response';
+import { OpenTriviaTokenResponse } from '../core-data/open-trivia-response/open-trivia-token-response';
 import { map, mergeMap, tap } from 'rxjs/operators';
-import { ResponseCode } from '../core-data/response-code';
+import { ResponseCode } from '../core-data/open-trivia-response/response-code';
 import { Observable } from 'rxjs';
+import { AxiosFactory } from '../core-data/axios-factory';
 
 
 const fetchToken: Observable<string> = Axios.get<OpenTriviaTokenResponse>('https://opentdb.com/api_token.php?command=request').pipe(
@@ -44,7 +45,6 @@ async function responseInterceptor(value: AxiosResponse): Promise<AxiosResponse>
 }
 
 
-export type AxiosFactory = () => Axios
 export const axiosFactory: AxiosFactory = () => {
     const axios = Axios.create({
         baseURL: 'https://opentdb.com/api.php'

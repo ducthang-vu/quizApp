@@ -6,6 +6,7 @@ import styles from '../style/Game.module.scss';
 import { fromGameActions } from '../store/game/game.slice';
 import { useHistory } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../store/store';
+import { GamePhase } from '../core-data/GamePhase';
 
 
 export default function Game() {
@@ -24,9 +25,12 @@ export default function Game() {
 
     const counter = (): string => `${currentQuestion + 1}/${questions.length}`;
 
-    const answerQuestion = (): void => {
-        dispatch(fromGameActions.addScore());
+    const answerQuestion = (correct=false): void => {
+        if (correct) {
+            dispatch(fromGameActions.addScore());
+        }
         if (currentQuestion + 1 >= questions.length) {
+            dispatch(fromGameActions.setPhase(GamePhase.ENDGAME))
             history.push('/endgame')
         } else {
             setCurrentQuestion();
@@ -41,7 +45,7 @@ export default function Game() {
         <div className="container">
             <MobileStepper
                 variant="progress"
-                steps={10}
+                steps={questions.length}
                 position="static"
                 activeStep={currentQuestion}
                 className={styles.stepper}

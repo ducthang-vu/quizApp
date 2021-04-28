@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/FinalResult.scss';
+import '../style/Endgame.module.scss';
 import { Button } from '@material-ui/core';
 
 interface FinalResultProps {

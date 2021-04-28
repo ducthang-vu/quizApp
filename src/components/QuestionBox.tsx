@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../style/QuestionBox.scss';
-import { Question } from '../core-data/question';
+import { Question } from '../core-data/questions/question';
 const _ = require("underscore");
 
 
 interface IQuestionBox {
     question: Question;
-    answerQuestion: (newScore: number) => void;
+    answerQuestion: (newScore: boolean) => void;
     children?: any[];
 }
 
@@ -21,8 +21,7 @@ export default function QuestionBox(props: IQuestionBox) {
 
     const handleConfirm = () => {
         if (answers.length !== 1) throw new Error('More than one answer');
-        const newScore = answers[0] === props.question.correct_answer ? 1 : 0;
-        props.answerQuestion(newScore);
+        props.answerQuestion(answers[0] === props.question.correct_answer);
     };
 
     useEffect(() => {

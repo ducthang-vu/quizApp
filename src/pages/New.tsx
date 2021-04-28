@@ -1,6 +1,6 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
-import { NumberQuestions } from '../core-data/number-questions';
+import { NumberQuestions } from '../core-data/questions/number-questions';
 import RadioFormGroup, { RadioOption } from '../components/RadioFormGroup';
 import styles from '../style/New.module.scss';
 import { GameDifficulty } from '../core-data/game-difficulty';
@@ -8,13 +8,18 @@ import { GameType } from '../core-data/game-type';
 import SendIcon from '@material-ui/icons/Send';
 import { fromQuestionsActions } from '../store/questions/questions.slice';
 import { useHistory } from 'react-router';
-import { IGetQuestionsParams } from '../core-data/i-get-questions-params';
+import { IGetQuestionsParams } from '../core-data/questions/i-get-questions-params';
 import { useAppDispatch } from '../store/store';
+import { fromGameActions } from '../store/game/game.slice';
+import { GamePhase } from '../core-data/GamePhase';
 
 
 export default function New() {
     const dispatch = useAppDispatch()
     const history = useHistory()
+    useEffect(() => {
+        dispatch(fromGameActions.setPhase(GamePhase.MAIN))
+    }, [dispatch])
     const numberOptions: RadioOption<NumberQuestions>[] = Object.values(NumberQuestions).map(v => ({
         value: v,
         label: v as string
@@ -32,7 +37,7 @@ export default function New() {
         },
         {
             value: GameType.MULTIPLE,
-            label: 'Multiple choice'
+            label: 'Multiple'
         },
         {
             value: GameType.BOTH,

@@ -9,7 +9,7 @@ interface GameSlice {
 const initialState: GameSlice = {
     score: 0,
     phase: GamePhase.MAIN
-}
+};
 
 
 export const gameSlice = createSlice({
@@ -17,14 +17,17 @@ export const gameSlice = createSlice({
     initialState,
     reducers: {
         addScore: (state) => {
-            state.score += 1
+            state.score += 1;
         },
         setPhase: (state, action: PayloadAction<GamePhase>) => {
             state.phase = action.payload;
+            if (action.payload === GamePhase.MAIN) {
+                state.score = 0;
+            };
         }
     },
 });
 
 
-export const fromGameActions =  gameSlice.actions;
+export const fromGameActions = gameSlice.actions;
 export const gameReducer = gameSlice.reducer;

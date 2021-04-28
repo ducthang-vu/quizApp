@@ -1,5 +1,5 @@
-import { GameDifficulty } from './game-difficulty';
-import { GameType } from './game-type';
+import { GameDifficulty } from '../game-difficulty';
+import { GameType } from '../game-type';
 
 export interface Question {
     category: string;

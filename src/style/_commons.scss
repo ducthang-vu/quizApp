@@ -2,6 +2,7 @@
 $primaryColor: #7f2838;
 $secondaryColor: #903749;
 $backgroundColor: #2b2e4a;
+$lightColor: #F2F0F2;
 
 * {
     margin: 0;
@@ -28,6 +29,9 @@ a {
     display: flex;
 }
 
+.text-center {
+    text-align: center;
+}
 
 
 @mixin mobile {

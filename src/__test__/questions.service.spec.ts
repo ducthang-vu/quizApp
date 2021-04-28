@@ -1,13 +1,13 @@
 import Axios from 'axios-observable';
 import { mocked } from 'ts-jest/utils';
 import { Observable, of } from 'rxjs';
-import { OpenTriviaQuestionsResponse } from '../core-data/open-trivia-questions-response';
+import { OpenTriviaQuestionsResponse } from '../core-data/open-trivia-response/open-trivia-questions-response';
 import { AxiosRequestConfig } from 'axios';
 import { QuestionsService } from '../services/questions.service';
-import { NumberQuestions } from '../core-data/number-questions';
+import { NumberQuestions } from '../core-data/questions/number-questions';
 import { GameDifficulty } from '../core-data/game-difficulty';
 import { GameType } from '../core-data/game-type';
-import { IGetQuestionsParams } from '../core-data/i-get-questions-params';
+import { IGetQuestionsParams } from '../core-data/questions/i-get-questions-params';
 
 
 const mockResponse: OpenTriviaQuestionsResponse = {

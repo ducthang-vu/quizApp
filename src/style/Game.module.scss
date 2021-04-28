@@ -8,11 +8,15 @@ h2 {
 .stepper {
     width: 100%;
     flex-grow: 1;
-    background: $backgroundColor;
+    background: $backgroundColor !important;
 
     & > * {
-        width: 100%;
+        width: 100% !important;
         height: 10px;
+
+        * {
+            width: 100% !important;
+        }
     }
 }
 

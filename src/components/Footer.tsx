@@ -1,5 +1,4 @@
 import React from 'react';
-import '../style/Footer.scss'
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 function Footer() {
