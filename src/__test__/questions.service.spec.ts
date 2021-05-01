@@ -2,12 +2,14 @@ import Axios from 'axios-observable';
 import { mocked } from 'ts-jest/utils';
 import { Observable, of } from 'rxjs';
 import { OpenTriviaQuestionsResponse } from '../core-data/open-trivia-response/open-trivia-questions-response';
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { QuestionsService } from '../services/questions.service';
 import { NumberQuestions } from '../core-data/questions/number-questions';
 import { GameDifficulty } from '../core-data/game-difficulty';
 import { GameType } from '../core-data/game-type';
 import { IGetQuestionsParams } from '../core-data/questions/i-get-questions-params';
+import { AxiosFactory } from '../core-data/axios-factory';
+import { AxiosObservable } from 'axios-observable/dist/axios-observable.interface';
 
 
 const mockResponse: OpenTriviaQuestionsResponse = {
@@ -38,37 +40,23 @@ const mockResponse: OpenTriviaQuestionsResponse = {
     ]
 };
 
-jest.doMock('axios-observable', () => ({
-    Axios: jest.fn().mockImplementation(() => ({
-        get: (url: string, config?: AxiosRequestConfig): Observable<OpenTriviaQuestionsResponse> => of(mockResponse)
-    }))
-}));
-
-
 describe('questionsService', () => {
-
-    it('getInstance should return instance of class with instance of axios', () => {
-        const spy = jest.spyOn(Axios, 'create');
-        const service = QuestionsService.getInstance();
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenCalledWith({
-            baseURL: 'https://opentdb.com/api.php'
-        });
+    it('factory method', () => {
+        expect(QuestionsService.getInstance()).toBeInstanceOf(QuestionsService);
     });
 
-    const service = QuestionsService.getInstance();
+    const fakeAxiosFactory: AxiosFactory = () => ({
+        get: (url: string, config?: AxiosRequestConfig): AxiosObservable<any> => of({ data: mockResponse } as AxiosResponse)
+    } as Axios);
+    const service = QuestionsService.getInstance(fakeAxiosFactory);
 
     it('getQuestions', async () => {
-        const MockAxios = mocked(Axios, true);
         const params: IGetQuestionsParams = {
             amount: NumberQuestions.TEEN,
             difficulty: GameDifficulty.ANY,
             type: GameType.BOTH
         };
         const result = await service.getQuestions(params).toPromise();
-        console.log(result)
         expect(result).toEqual(mockResponse.results);
-        expect(MockAxios.get).toHaveBeenCalledTimes(1);
-        expect(MockAxios.get).toHaveBeenCalledWith('', { params });
     });
 });
