@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../store/store';
 import { GamePhase } from '../core-data/GamePhase';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import styles from '../style/Endgame.module.scss';
 
 
@@ -11,10 +11,10 @@ export default function Endgame() {
     const score = useAppSelector(state => state.game.score);
     const total = useAppSelector(state => state.questions.entities).length;
     const phase = useAppSelector(state => state.game.phase);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     if (phase !== GamePhase.ENDGAME) {
-        history.push('/')
+        navigate('/')
     }
 
     return (

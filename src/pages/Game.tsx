@@ -4,14 +4,14 @@ import { MobileStepper } from '@material-ui/core';
 import QuestionBox from '../components/QuestionBox';
 import styles from '../style/Game.module.scss';
 import { fromGameActions } from '../store/game/game.slice';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { GamePhase } from '../core-data/GamePhase';
 
 
 export default function Game() {
     const dispatch = useAppDispatch();
-    const history = useHistory()
+    const navigate = useNavigate();
 
     const loading = useAppSelector(state => state.questions.loading);
     const questions = useAppSelector(state => state.questions.entities);
@@ -20,18 +20,19 @@ export default function Game() {
     const [currentQuestion, setCurrentQuestion] = useReducer(prev => ++prev, 0);
 
     useEffect(() => {
-        if (error) history.push('/')
-    }, [history, error])
+        if (error) navigate('/')
+    }, [error])
 
     const counter = (): string => `${currentQuestion + 1}/${questions.length}`;
 
     const answerQuestion = (correct=false): void => {
+        throw new Error('new Error')
         if (correct) {
             dispatch(fromGameActions.addScore());
         }
         if (currentQuestion + 1 >= questions.length) {
             dispatch(fromGameActions.setPhase(GamePhase.ENDGAME))
-            history.push('/endgame')
+            navigate('/endgame')
         } else {
             setCurrentQuestion();
         }

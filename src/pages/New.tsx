@@ -7,7 +7,7 @@ import { GameDifficulty } from '../core-data/game-difficulty';
 import { GameType } from '../core-data/game-type';
 import SendIcon from '@material-ui/icons/Send';
 import { fromQuestionsActions } from '../store/questions/questions.slice';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { IGetQuestionsParams } from '../core-data/questions/i-get-questions-params';
 import { useAppDispatch } from '../store/store';
 import { fromGameActions } from '../store/game/game.slice';
@@ -16,7 +16,7 @@ import { GamePhase } from '../core-data/GamePhase';
 
 export default function New() {
     const dispatch = useAppDispatch()
-    const history = useHistory()
+    const navigate = useNavigate();
     useEffect(() => {
         dispatch(fromGameActions.setPhase(GamePhase.MAIN))
     }, [dispatch])
@@ -52,7 +52,7 @@ export default function New() {
             difficulty: difficultyOption,
             type: typeOption
         }
-        history.push('/game')
+        navigate('/game')
         dispatch(fromQuestionsActions.loadQuestions(payload));
     };
 

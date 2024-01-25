@@ -1,8 +1,7 @@
 import React, { ErrorInfo } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { Navigate } from 'react-router';
 
-
-interface ErrorBoundaryStateProps extends RouteComponentProps<any> {
+interface ErrorBoundaryStateProps {
     children: JSX.Element
 }
 
@@ -12,7 +11,7 @@ interface ErrorBoundaryState {
 }
 
 
-class GenericErrorBoundary extends React.Component<ErrorBoundaryStateProps, ErrorBoundaryState> {
+export default class GenericErrorBoundary extends React.Component<ErrorBoundaryStateProps, ErrorBoundaryState> {
     private intervalId: number | undefined;
 
     static getDerivedStateFromError(error: Error) {
@@ -20,7 +19,7 @@ class GenericErrorBoundary extends React.Component<ErrorBoundaryStateProps, Erro
         return { hasError: true };
     }
 
-    constructor(props: any) {
+    constructor(props: ErrorBoundaryStateProps) {
         super(props);
         this.state = {
             hasError: false,
@@ -50,9 +49,6 @@ class GenericErrorBoundary extends React.Component<ErrorBoundaryStateProps, Erro
         if (this.state.hasError) {
             this.intervalId = window.setInterval(() => this.tick(), 1000);
         }
-        if (this.state.timeout <= 0) {
-            this.props.history.push('/')
-        }
     }
 
     componentWillUnmount() {
@@ -61,16 +57,21 @@ class GenericErrorBoundary extends React.Component<ErrorBoundaryStateProps, Erro
 
     render() {
         const { hasError, timeout } = this.state;
-        if (hasError) {
-            return (
-                <div className="container">
-                    <h1>Something went wrong.</h1>
-                    <p>You will be redirect to home in {timeout} seconds...</p>
-                </div>
-            );
+
+        if (!hasError) {
+            return this.props.children;
         }
-        return this.props.children;
+
+        if (this.state.timeout <= 0) {
+            return <Navigate to="/" replace={true} />
+        }
+
+        return (
+            <div className="container">
+                <h1>Something went wrong.</h1>
+                <p>You will be redirect to home in {timeout} seconds...</p>
+            </div>
+        );
+
     }
 }
-
-export default withRouter<any, any>(GenericErrorBoundary);

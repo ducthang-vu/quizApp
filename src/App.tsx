@@ -3,7 +3,7 @@ import './style/App.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import New from './pages/New';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Game from './pages/Game';
 import Endgame from './pages/Endgame';
 import GenericErrorBoundary from './error-boundaries/generic-error';
@@ -15,20 +15,12 @@ function App() {
             <Header/>
             <main>
                 <BrowserRouter basename="/quizApp">
-                    <Switch>
-                        <Route exact path="/">
-                            <New />
-                        </Route>
-                        <Route exact path="/game">
-                            <GenericErrorBoundary><Game /></GenericErrorBoundary>
-                        </Route>
-                        <Route exact path="/endgame">
-                            <Endgame />
-                        </Route>
-                        <Route path="*">
-                            <Redirect to="/" />
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route path="/" element={<New />}></Route>
+                        <Route path="/game" element={<GenericErrorBoundary><Game/></GenericErrorBoundary>}></Route>
+                        <Route path="/endgame" element={Endgame}></Route>
+                        <Route path="*" element={<Navigate replace to="/" />}></Route>
+                    </Routes>
                 </BrowserRouter>
             </main>
             <Footer/>
