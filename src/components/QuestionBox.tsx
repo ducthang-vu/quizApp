@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../style/QuestionBox.scss';
 import { Question } from '../core-data/questions/question';
-const _ = require("underscore");
-
+import { shuffle } from '../util/shuffle';
 
 interface IQuestionBox {
     question: Question;
@@ -14,7 +13,7 @@ interface IQuestionBox {
 export default function QuestionBox(props: IQuestionBox) {
     const getAllAnswers = (props: IQuestionBox) => {
         const { correct_answer, incorrect_answers } = props.question;
-        return _.shuffle(incorrect_answers.concat(correct_answer));
+        return shuffle(incorrect_answers.concat(correct_answer));
     };
 
     const [answers, setAnswers] = useState(getAllAnswers(props));

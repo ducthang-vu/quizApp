@@ -18,8 +18,7 @@
     "react-scripts": "^5.0.1",
     "redux-observable": "^1.2.0",
     "rxjs": "^6.6.7",
-    "sass": "^1.70.0",
-    "underscore": "^1.13.1"
+    "sass": "^1.70.0"
   },
   "scripts": {
     "start": "CHOKIDAR_USEPOLLING=true react-scripts start",
