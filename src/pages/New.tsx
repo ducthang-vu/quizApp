@@ -5,7 +5,6 @@ import RadioFormGroup, { RadioOption } from '../components/RadioFormGroup';
 import styles from '../style/New.module.scss';
 import { GameDifficulty } from '../core-data/game-difficulty';
 import { GameType } from '../core-data/game-type';
-import SendIcon from '@material-ui/icons/Send';
 import { fromQuestionsActions } from '../store/questions/questions.slice';
 import { useNavigate } from 'react-router';
 import { IGetQuestionsParams } from '../core-data/questions/i-get-questions-params';
@@ -15,7 +14,7 @@ import { GamePhase } from '../core-data/GamePhase';
 
 
 export default function New() {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     useEffect(() => {
         dispatch(fromGameActions.setPhase(GamePhase.MAIN))
@@ -74,8 +73,7 @@ export default function New() {
                     size="large"
                     color="primary"
                 >
-                    <SendIcon/>
-                    <span>Start!</span>
+                    Start!
                 </Button>
             </form>
         </div>
