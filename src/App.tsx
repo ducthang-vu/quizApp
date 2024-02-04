@@ -18,7 +18,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<New />}></Route>
                         <Route path="/game" element={<GenericErrorBoundary><Game/></GenericErrorBoundary>}></Route>
-                        <Route path="/endgame" element={Endgame}></Route>
+                        <Route path="/endgame" element={<Endgame></Endgame>}></Route>
                         <Route path="*" element={<Navigate replace to="/" />}></Route>
                     </Routes>
                 </BrowserRouter>

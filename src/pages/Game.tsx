@@ -26,7 +26,6 @@ export default function Game() {
     const counter = (): string => `${currentQuestion + 1}/${questions.length}`;
 
     const answerQuestion = (correct=false): void => {
-        throw new Error('new Error')
         if (correct) {
             dispatch(fromGameActions.addScore());
         }

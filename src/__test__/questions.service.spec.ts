@@ -1,6 +1,5 @@
 import Axios from 'axios-observable';
-import { mocked } from 'ts-jest/utils';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { OpenTriviaQuestionsResponse } from '../core-data/open-trivia-response/open-trivia-questions-response';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { QuestionsService } from '../services/questions.service';
